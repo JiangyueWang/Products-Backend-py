@@ -20,7 +20,7 @@ def product_list(request):
             return Response(serilizers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def product_details(request, pk):
     product = Product.objects.get(pk=pk)
     if request.method == 'GET':
@@ -36,3 +36,6 @@ def product_details(request, pk):
             return Response(serilizers.data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
