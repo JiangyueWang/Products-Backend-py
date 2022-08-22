@@ -20,11 +20,19 @@ def product_list(request):
             return Response(serilizers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT'])
 def product_details(request, pk):
-    try:
-        product = Product.objects.get(pk=pk)
-        serilizers = ProductSerializer(product)
-        return Response(serilizers.data)
-    except Product.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    product = Product.objects.get(pk=pk)
+    if request.method == 'GET':
+        try:
+            serilizers = ProductSerializer(product)
+            return Response(serilizers.data)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    elif request.method == 'PUT':
+        serilizers = ProductSerializer(product, data=request.data)
+        if serilizers.is_valid() == True:
+            serilizers.save()
+            return Response(serilizers.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
