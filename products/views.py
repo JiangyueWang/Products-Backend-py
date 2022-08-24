@@ -1,3 +1,4 @@
+from functools import partial
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -39,3 +40,15 @@ def product_details(request, pk):
     elif request.method == 'DELETE':
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['PATCH'])
+def update_product_url(request, pk):
+    product = Product.objects.get(pk=pk)
+    serilizers = ProductSerializer(product, data=request.data, partial=True)
+    if serilizers.is_valid() == True:
+        serilizers.save()
+        return Response(serilizers.data, status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
