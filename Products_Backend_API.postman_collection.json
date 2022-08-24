@@ -36,7 +36,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/products/5",
+					"raw": "http://127.0.0.1:8000/api/products/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -48,7 +48,7 @@
 					"path": [
 						"api",
 						"products",
-						"5"
+						"1"
 					]
 				}
 			},
@@ -61,7 +61,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Orange\",\r\n    \"description\": \"Fruit\",\r\n    \"price\": 2.99,\r\n    \"inventory_quantity\": 180\r\n}",
+					"raw": "{\r\n    \"title\": \"Orange\",\r\n    \"description\": \"Fruit\",\r\n    \"price\": 2.99,\r\n    \"inventory_quantity\": 180,\r\n    \"product_image_url\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -94,7 +94,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Mango\",\r\n    \"description\": \"Fruit\",\r\n    \"price\": 2.99,\r\n    \"inventory_quantity\": 160\r\n}",
+					"raw": "{\r\n    \"title\": \"Grape\",\r\n    \"description\": \"Fruit\",\r\n    \"price\": 2.99,\r\n    \"inventory_quantity\": 160,\r\n    \"product_image_url\": null\r\n\r\n    \r\n\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -102,7 +102,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/products/5",
+					"raw": "http://127.0.0.1:8000/api/products/4",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -114,7 +114,7 @@
 					"path": [
 						"api",
 						"products",
-						"5"
+						"4"
 					]
 				}
 			},
@@ -139,6 +139,40 @@
 						"api",
 						"products",
 						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_Product_Image_URL",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"product_image_url\": \"https://bit.ly/3KdNloO\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/1/update_product_url",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						"1",
+						"update_product_url"
 					]
 				}
 			},
